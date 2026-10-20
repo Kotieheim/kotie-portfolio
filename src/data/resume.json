@@ -1,0 +1,202 @@
+{
+  "basics": {
+    "name": "Dakota Heim",
+    "label": "Senior Developer",
+    "email": "kotieheim@gmail.com",
+    "phone": "(801) 427-9988",
+    "location": "Dayton, OH",
+    "summary": "Senior developer with 6+ years building production web applications, APIs, and cloud-ready systems for enterprise and global restaurant brands. Deep in Vue, React and TypeScript on the front end, with Node.js and Go services, PostgreSQL, and Redis behind them. Leads cross-functional initiatives, owns Docker-based CI/CD, and mentors developers through code reviews and pairing. Partners with client teams on high-visibility systems and releases for global restaurant brands, from pricing integration through production launch. Uses AI-assisted development tools daily and has shipped AI-driven data tooling to production.",
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "dakotaheim",
+        "url": "https://linkedin.com/in/dakotaheim"
+      },
+      {
+        "network": "GitHub",
+        "username": "Kotieheim",
+        "url": "https://github.com/Kotieheim"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "name": "Frontend",
+      "keywords": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Vue",
+        "Svelte",
+        "HTML/CSS",
+        "Responsive design"
+      ]
+    },
+    {
+      "name": "Backend & APIs",
+      "keywords": [
+        "Node.js",
+        "Go",
+        "REST APIs",
+        "WebSockets",
+        "Microservices",
+        "Rules-engine / JSON state models"
+      ]
+    },
+    {
+      "name": "Data",
+      "keywords": [
+        "PostgreSQL",
+        "Redis (caching)",
+        "Data modeling",
+        "ETL-style processing"
+      ]
+    },
+    {
+      "name": "DevOps & Cloud",
+      "keywords": [
+        "Docker",
+        "CI/CD pipelines",
+        "Feature flags",
+        "Containerized deployments",
+        "Git",
+        "Monitoring and alerting"
+      ]
+    },
+    {
+      "name": "AI & Tooling",
+      "keywords": [
+        "AI-driven data pipelines",
+        "AI-assisted development (Copilot, Claude, Cursor)"
+      ]
+    },
+    {
+      "name": "Practices",
+      "keywords": [
+        "Agile/Scrum",
+        "Automated testing",
+        "Code review",
+        "Technical documentation",
+        "Mentorship"
+      ]
+    }
+  ],
+  "work": [
+    {
+      "company": "Stratacache",
+      "positions": [
+        {
+          "title": "Senior Software Developer",
+          "startDate": "2025-01",
+          "endDate": null,
+          "highlights": [
+            "Architect a next-generation platform built on a rules-engine-driven JSON state model that powers dynamic web applications for all client brands.",
+            "Added Redis caching to a high-traffic Go pricing API receiving requests from ~15,000 devices every 15 minutes allowing 1k calls per minute to the cache DB.",
+            "Built AI-driven tooling that converts image data into structured datasets feeding internal systems, replacing hundreds of manual work.",
+            "Lead cross-functional initiatives across engineering and DevOps teams of 5-10 people in an Agile/Scrum environment.",
+            "Raised deployment reliability with Docker-based CI/CD workflows and feature-flag rollouts, removing human error."
+          ]
+        },
+        {
+          "title": "Intermediate Software Developer",
+          "startDate": "2022-07",
+          "endDate": "2024-12",
+          "highlights": [
+            "Designed custom Docker CI/CD pipelines that automated complex build and deployment workflows, cutting manual build times drastically.",
+            "Built internal QA tooling that simulates API and WebSocket traffic, giving the team reliable, repeatable test environments.",
+            "Mentored 5-10 developers through code reviews, pair programming, and Agile ceremonies.",
+            "Established documentation standards that shortened new-developer on-boarding from 4 weeks to 2 weeks."
+          ]
+        }
+      ]
+    },
+    {
+      "company": "JPMorgan Chase",
+      "positions": [
+        {
+          "title": "Software Engineer",
+          "startDate": "2021-10",
+          "endDate": "2022-07",
+          "highlights": [
+            "Delivered enterprise banking features inside JPMorgan's internal application framework.",
+            "Helped decompose monolithic applications into modular services and APIs.",
+            "Built React proof-of-concept apps that supported the modernization of the chase.com frontend architecture."
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Stratacache",
+      "positions": [
+        {
+          "title": "Software Developer",
+          "startDate": "2020-05",
+          "endDate": "2021-10",
+          "highlights": [
+            "Built pricing-integration APIs enabling real-time menu and price updates for global restaurant brands across many locations.",
+            "Developed greenfield applications and supported high-availability production systems.",
+            "Coordinated releases across high-visibility client repositories."
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Utah Valley University",
+      "studyType": "Coursework toward B.S.",
+      "area": "Computer Science"
+    },
+    {
+      "institution": "Bloc",
+      "studyType": "Certificate of Completion",
+      "area": "Remote Web Developer Track"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Rules-Engine Platform",
+      "description": "Next-generation platform built on a rules-engine-driven JSON state model that powers dynamic web applications for all client brands.",
+      "keywords": [
+        "TypeScript",
+        "JSON state models",
+        "Rules engine"
+      ]
+    },
+    {
+      "name": "Pricing API Cache",
+      "description": "Redis caching layer for a high-traffic Go pricing API serving ~15,000 devices every 15 minutes.",
+      "keywords": [
+        "Go",
+        "Redis",
+        "REST APIs"
+      ]
+    },
+    {
+      "name": "Image-to-Dataset AI Tooling",
+      "description": "AI-driven tooling that converts image data into structured datasets feeding internal systems.",
+      "keywords": [
+        "AI pipelines",
+        "Data modeling"
+      ]
+    },
+    {
+      "name": "API & WebSocket QA Simulator",
+      "description": "Internal QA tooling that simulates API and WebSocket traffic for reliable, repeatable test environments.",
+      "keywords": [
+        "Node.js",
+        "WebSockets",
+        "Testing"
+      ]
+    },
+    {
+      "name": "Docker CI/CD Pipelines",
+      "description": "Custom Docker CI/CD workflows with feature-flag rollouts that automated complex builds and deployments.",
+      "keywords": [
+        "Docker",
+        "CI/CD",
+        "Feature flags"
+      ]
+    }
+  ]
+}
