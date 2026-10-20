@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+@import "@fontsource/press-start-2p";
+@import "@fontsource/rubik-mono-one";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: "Rubik Mono One", system-ui, sans-serif;
+    --font-pixel: "Press Start 2P", ui-monospace, monospace;
+    --color-n64-red: var(--n64-red);
+    --color-n64-green: var(--n64-green);
+    --color-n64-blue: var(--n64-blue);
+    --color-n64-yellow: var(--n64-yellow);
+    --color-n64-plastic: var(--n64-plastic);
+    --font-sans: 'Geist Variable', sans-serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    color-scheme: dark;
+    --n64-red: #e4002b;
+    --n64-green: #00a651;
+    --n64-blue: #2e5bd8;
+    --n64-yellow: #ffc20e;
+    --n64-plastic: #3a3d46;
+
+    --background: #0b0b2a;
+    --foreground: #f4f1e8;
+    --card: #14154a;
+    --card-foreground: #f4f1e8;
+    --popover: #14154a;
+    --popover-foreground: #f4f1e8;
+    --primary: var(--n64-yellow);
+    --primary-foreground: #1a1206;
+    --secondary: #23256e;
+    --secondary-foreground: #f4f1e8;
+    --muted: #1c1d5c;
+    --muted-foreground: #b9b8d9;
+    --accent: var(--n64-blue);
+    --accent-foreground: #ffffff;
+    --destructive: var(--n64-red);
+    --border: #3b3f9e;
+    --input: #3b3f9e;
+    --ring: var(--n64-yellow);
+    --chart-1: var(--n64-red);
+    --chart-2: var(--n64-green);
+    --chart-3: var(--n64-blue);
+    --chart-4: var(--n64-yellow);
+    --chart-5: #9aa0b4;
+    --radius: 0.5rem;
+    --sidebar: #14154a;
+    --sidebar-foreground: #f4f1e8;
+    --sidebar-primary: var(--n64-yellow);
+    --sidebar-primary-foreground: #1a1206;
+    --sidebar-accent: #23256e;
+    --sidebar-accent-foreground: #f4f1e8;
+    --sidebar-border: #3b3f9e;
+    --sidebar-ring: var(--n64-yellow);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+  html {
+    font-family: var(--font-sans);
+  }
+}
+
+/* Chunky, beveled title text similar to Glover */
+.retro-title {
+  font-family: var(--font-heading);
+  color: var(--n64-yellow);
+  text-shadow:
+    2px 2px 0 #b35400,
+    4px 4px 0 #7a2400,
+    6px 6px 0 #000;
+  letter-spacing: 0.02em;
+}
+
+/* Menu window: thick beveled border with a lit top-left and shaded bottom-right. */
+.retro-panel {
+  background: color-mix(in srgb, var(--card) 88%, transparent);
+  border: 4px solid #6b70d6;
+  border-radius: 0.75rem;
+  box-shadow:
+    inset 3px 3px 0 #9ea3ff,
+    inset -3px -3px 0 #23256e,
+    6px 6px 0 #000;
+  backdrop-filter: blur(4px);
+}
+
+/* Render the WebGL canvas at low resolution and upscale with hard pixels. */
+.pixelated {
+  image-rendering: pixelated;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blink { animation: none; }
+}
