@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
+import { Canvas, useFrame, type ThreeElements } from '@react-three/fiber'
 import { Float, Stars } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -8,8 +8,34 @@ const COLORS = ['#e4002b', '#00a651', '#2e5bd8', '#ffc20e']
 const prefersReducedMotion =
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-/** n64 logo but not the actual one */
-function BlockCluster() {
+/** 5x5 pixel-font glyphs, top row first */
+const GLYPHS = {
+  D: ['####.', '#...#', '#...#', '#...#', '####.'],
+  H: ['#...#', '#...#', '#####', '#...#', '#...#'],
+}
+
+const VOXEL = 0.24
+const voxelGeometry = new THREE.BoxGeometry(VOXEL, VOXEL, VOXEL * 2)
+
+function VoxelLetter({ glyph, color, ...props }: { glyph: string[]; color: string } & ThreeElements['group']) {
+  const offset = (glyph.length - 1) / 2
+  return (
+    <group {...props}>
+      {glyph.flatMap((row, y) =>
+        [...row].map((cell, x) =>
+          cell === '#' ? (
+            <mesh key={`${x}-${y}`} geometry={voxelGeometry} position={[(x - offset) * VOXEL, (offset - y) * VOXEL, 0]}>
+              <meshLambertMaterial color={color} flatShading />
+            </mesh>
+          ) : null,
+        ),
+      )}
+    </group>
+  )
+}
+
+/** Initials built from blocks, in the spirit of the n64 logo */
+function Initials() {
   const group = useRef<THREE.Group>(null)
 
   useFrame((_, delta) => {
@@ -20,31 +46,58 @@ function BlockCluster() {
 
   return (
     <group ref={group} position={[2.6, 0.6, 0]}>
-      {COLORS.map((color, i) => {
-        const angle = (i / COLORS.length) * Math.PI * 2
-        return (
-          <mesh key={color} position={[Math.cos(angle) * 0.75, i % 2 ? 0.35 : -0.35, Math.sin(angle) * 0.75]}>
-            <boxGeometry args={[0.8, 0.8, 0.8]} />
-            <meshLambertMaterial color={color} flatShading />
-          </mesh>
-        )
-      })}
+      <VoxelLetter glyph={GLYPHS.D} color={COLORS[0]} position={[-0.7, 0.2, 0.25]} />
+      <VoxelLetter glyph={GLYPHS.H} color={COLORS[2]} position={[0.7, -0.2, -0.25]} />
     </group>
   )
 }
 
-function Gem() {
+interface GemProps {
+  position: [number, number, number]
+  size: number
+  color: string
+  spin: number
+  floatSpeed: number
+  tilt: number
+}
+
+const GEM_COUNT = 8
+const random = (min: number, max: number) => min + Math.random() * (max - min)
+
+/** Scatter gems across the scene, re-rolled on every page load. Keeps clear of the initials. */
+function makeGems(): GemProps[] {
+  const gems: GemProps[] = []
+  while (gems.length < GEM_COUNT) {
+    const position: [number, number, number] = [random(-6, 6.5), random(-0.6, 3.4), random(-7, -0.5)]
+    const nearInitials = Math.abs(position[0] - 2.6) < 2 && Math.abs(position[1] - 0.6) < 1.6 && position[2] > -3
+    const nearOtherGem = gems.some((g) => Math.hypot(...g.position.map((v, i) => v - position[i])) < 1.6)
+    if (nearInitials || nearOtherGem) continue
+    gems.push({
+      position,
+      size: random(0.25, 0.55),
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      spin: random(0.6, 1.6) * (Math.random() < 0.5 ? -1 : 1),
+      floatSpeed: random(1.2, 2.6),
+      tilt: random(-0.4, 0.4),
+    })
+  }
+  return gems
+}
+
+const gems = makeGems()
+
+function Gem({ position, size, color, spin, floatSpeed, tilt }: GemProps) {
   const mesh = useRef<THREE.Mesh>(null)
 
   useFrame((_, delta) => {
-    if (mesh.current && !prefersReducedMotion) mesh.current.rotation.y -= delta * 1.2
+    if (mesh.current && !prefersReducedMotion) mesh.current.rotation.y += delta * spin
   })
 
   return (
-    <Float speed={prefersReducedMotion ? 0 : 2} floatIntensity={1.2} rotationIntensity={0}>
-      <mesh ref={mesh} position={[4.8, 2.6, -2.5]}>
-        <octahedronGeometry args={[0.55, 0]} />
-        <meshLambertMaterial color="#ffc20e" emissive="#7a4a00" flatShading />
+    <Float speed={prefersReducedMotion ? 0 : floatSpeed} floatIntensity={1.2} rotationIntensity={0}>
+      <mesh ref={mesh} position={position} rotation={[0, 0, tilt]}>
+        <octahedronGeometry args={[size, 0]} />
+        <meshLambertMaterial color={color} emissive={color} emissiveIntensity={0.25} flatShading />
       </mesh>
     </Float>
   )
@@ -96,8 +149,10 @@ export function Scene() {
         <ambientLight intensity={0.8} />
         <directionalLight position={[3, 5, 4]} intensity={2.2} />
         <Stars radius={40} depth={20} count={800} factor={3} fade speed={prefersReducedMotion ? 0 : 0.5} />
-        <BlockCluster />
-        <Gem />
+        <Initials />
+        {gems.map((gem, i) => (
+          <Gem key={i} {...gem} />
+        ))}
         <Ground />
       </Canvas>
     </div>
