@@ -102,7 +102,7 @@
           "startDate": "2022-07",
           "endDate": "2024-12",
           "highlights": [
-            "Designed custom Docker CI/CD pipelines that automated complex build and deployment workflows, cutting manual build times drastically.",
+            "Designed custom Docker CI/CD pipelines that automated complex build and deployment workflows, cutting manual build times drastically",
             "Built internal QA tooling that simulates API and WebSocket traffic, giving the team reliable, repeatable test environments.",
             "Mentored 5-10 developers through code reviews, pair programming, and Agile ceremonies.",
             "Established documentation standards that shortened new-developer on-boarding from 4 weeks to 2 weeks."

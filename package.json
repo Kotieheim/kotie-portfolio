@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "resume": "node scripts/build-resume.ts",
+    "predev": "npm run resume",
     "dev": "vite",
+    "prebuild": "npm run resume",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"
