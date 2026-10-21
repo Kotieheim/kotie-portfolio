@@ -46,7 +46,7 @@ export default function App() {
       </Suspense>
 
       <header className="flex min-h-[80svh] flex-col items-start justify-center gap-6 px-4 py-16 sm:px-10">
-        <p className="font-pixel text-xs text-muted-foreground">© 1996-{YEAR} Portfolio Ent.</p>
+        <p className="font-pixel text-xs text-muted-foreground">© {YEAR} Portfolio Ent.</p>
         <h1 className="retro-title text-[clamp(2.5rem,10vw,6.5rem)] leading-[0.95] uppercase">
           {name.split(' ').map((part) => (
             <span key={part} className="block">
@@ -68,7 +68,7 @@ export default function App() {
             download
             className="font-pixel rounded-full border-4 border-black bg-n64-yellow px-6 py-3 text-sm text-black shadow-[4px_4px_0_#000] transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_#000]"
           >
-            Resume ↓
+            Resume download
           </a>
         </div>
       </header>

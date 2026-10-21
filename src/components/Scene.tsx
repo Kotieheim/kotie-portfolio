@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Canvas, useFrame, type ThreeElements } from '@react-three/fiber'
+import { Canvas, useFrame, useThree, type ThreeElements } from '@react-three/fiber'
 import { Float, Stars } from '@react-three/drei'
 import * as THREE from 'three'
 
@@ -35,8 +35,11 @@ function VoxelLetter({ glyph, color, ...props }: { glyph: string[]; color: strin
 }
 
 /** Initials built from blocks, in the spirit of the n64 logo */
+const INITIALS_SPAN = 2.8
+
 function Initials() {
   const group = useRef<THREE.Group>(null)
+  const { viewport, camera } = useThree()
 
   useFrame((_, delta) => {
     if (!group.current || prefersReducedMotion) return
@@ -44,16 +47,25 @@ function Initials() {
     group.current.rotation.x = Math.sin(performance.now() / 2000) * 0.25
   })
 
+  const portrait = viewport.aspect < 1
+  const scale = portrait ? Math.min(1, (viewport.width * 0.55) / INITIALS_SPAN) : 1
+  const top = camera.position.y + viewport.height / 2
+  const position: [number, number, number] = portrait ? [0, top - 1.4 * scale - 0.5, 0] : [2.6, 0.6, 0]
+
   return (
-    <group ref={group} position={[2.6, 0.6, 0]}>
-      <VoxelLetter glyph={GLYPHS.D} color={COLORS[0]} position={[-0.7, 0.2, 0.25]} />
-      <VoxelLetter glyph={GLYPHS.H} color={COLORS[2]} position={[0.7, -0.2, -0.25]} />
+    <group position={position} scale={scale}>
+      <group ref={group}>
+        <VoxelLetter glyph={GLYPHS.D} color={COLORS[0]} position={[-0.7, 0.2, 0.25]} />
+        <VoxelLetter glyph={GLYPHS.H} color={COLORS[2]} position={[0.7, -0.2, -0.25]} />
+      </group>
     </group>
   )
 }
 
 interface GemProps {
-  position: [number, number, number]
+  x: number
+  y: number
+  z: number
   size: number
   color: string
   spin: number
@@ -64,16 +76,20 @@ interface GemProps {
 const GEM_COUNT = 8
 const random = (min: number, max: number) => min + Math.random() * (max - min)
 
-/** Scatter gems across the scene, re-rolled on every page load. Keeps clear of the initials. */
+/**
+ * Scatter gems across the scene, re-rolled on every page load. Positions are relative to
+ * the visible area so they fill phones and wide screens alike. They sit behind the initials.
+ */
 function makeGems(): GemProps[] {
   const gems: GemProps[] = []
-  while (gems.length < GEM_COUNT) {
-    const position: [number, number, number] = [random(-6, 6.5), random(-0.6, 3.4), random(-7, -0.5)]
-    const nearInitials = Math.abs(position[0] - 2.6) < 2 && Math.abs(position[1] - 0.6) < 1.6 && position[2] > -3
-    const nearOtherGem = gems.some((g) => Math.hypot(...g.position.map((v, i) => v - position[i])) < 1.6)
-    if (nearInitials || nearOtherGem) continue
+  for (let attempt = 0; gems.length < GEM_COUNT && attempt < 500; attempt++) {
+    const x = random(-0.9, 0.9)
+    const y = random(0, 1)
+    if (gems.some((g) => Math.hypot(g.x - x, (g.y - y) * 2) < 0.4)) continue
     gems.push({
-      position,
+      x,
+      y,
+      z: random(-7, -1.5),
       size: random(0.25, 0.55),
       color: COLORS[Math.floor(Math.random() * COLORS.length)],
       spin: random(0.6, 1.6) * (Math.random() < 0.5 ? -1 : 1),
@@ -86,8 +102,16 @@ function makeGems(): GemProps[] {
 
 const gems = makeGems()
 
-function Gem({ position, size, color, spin, floatSpeed, tilt }: GemProps) {
+function Gem({ x, y, z, size, color, spin, floatSpeed, tilt }: GemProps) {
   const mesh = useRef<THREE.Mesh>(null)
+  const { viewport, camera } = useThree()
+  const visible = viewport.getCurrentViewport(camera, [0, 0, z])
+  const top = camera.position.y + visible.height / 2 - 0.6
+  const position: [number, number, number] = [
+    x * (visible.width / 2 - 0.4),
+    THREE.MathUtils.lerp(-0.6, top, y),
+    z,
+  ]
 
   useFrame((_, delta) => {
     if (mesh.current && !prefersReducedMotion) mesh.current.rotation.y += delta * spin
