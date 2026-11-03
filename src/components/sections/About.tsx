@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Panel } from "@/components/Panel";
 import { resume, yearsOfExperience } from "@/data/resume";
 import styles from "./About.module.css";
@@ -55,6 +56,8 @@ const party = [
 
 export function About() {
   const { basics, education, work } = resume;
+  const [selectedId, setSelectedId] = useState(party[0].id);
+  const selected = party.find((member) => member.id === selectedId) ?? party[0];
   const stats = [
     { label: "Years", value: `${yearsOfExperience()}+` },
     { label: "Companies", value: new Set(work.map((job) => job.company)).size },
@@ -97,21 +100,34 @@ export function About() {
 
       <Panel title="About me!" accent="red">
         <ul className={styles.party} aria-label="Party members">
-          {party.map((member) => (
-            <li key={member.id} className={styles.member}>
-              <img
-                src={member.src}
-                alt={member.alt}
-                className={styles.sprite}
-                loading="lazy"
-              />
-              <div className={styles.blurb}>
-                <h3 className={styles.memberName}>{member.name}</h3>
-                <p className={styles.bio}>{member.bio}</p>
-              </div>
-            </li>
-          ))}
+          {party.map((member) => {
+            const isSelected = member.id === selectedId;
+            return (
+              <li key={member.id}>
+                <button
+                  type="button"
+                  className={styles.member}
+                  aria-pressed={isSelected}
+                  aria-controls="party-bio"
+                  onClick={() => setSelectedId(member.id)}
+                >
+                  <img
+                    src={member.src}
+                    alt={member.alt}
+                    className={styles.sprite}
+                    loading="lazy"
+                  />
+                  <span className={styles.memberName}>{member.name}</span>
+                </button>
+              </li>
+            );
+          })}
         </ul>
+
+        <div id="party-bio" className={styles.blurb} aria-live="polite">
+          <h3 className={styles.bioName}>{selected.name}</h3>
+          <p className={styles.bio}>{selected.bio}</p>
+        </div>
       </Panel>
     </div>
   );
