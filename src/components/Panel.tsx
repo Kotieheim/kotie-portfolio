@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
+import { accentClass } from '@/styles/accents'
+import styles from './Panel.module.css'
 
 interface PanelProps {
   title: string
@@ -9,20 +11,11 @@ interface PanelProps {
   children: ReactNode
 }
 
-const accentClass = {
-  red: 'bg-n64-red text-white',
-  green: 'bg-n64-green text-white',
-  blue: 'bg-n64-blue text-white',
-  yellow: 'bg-n64-yellow text-black',
-}
-
 export function Panel({ title, accent = 'blue', className, children }: PanelProps) {
   return (
-    <section className={cn('retro-panel overflow-hidden', className)}>
-      <h2 className={cn('font-pixel px-4 py-2 text-[0.7rem] tracking-wider uppercase', accentClass[accent])}>
-        {title}
-      </h2>
-      <div className="p-5">{children}</div>
+    <section className={cn('retro-panel', styles.panel, className)}>
+      <h2 className={cn(styles.title, accentClass[accent])}>{title}</h2>
+      <div className={styles.body}>{children}</div>
     </section>
   )
 }

@@ -1,0 +1,49 @@
+:where(.root) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+:where(.list) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted-foreground);
+}
+
+:where(.trigger) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:where(.trigger):hover {
+  color: var(--foreground);
+}
+
+:where(.trigger):focus-visible {
+  border-color: var(--ring);
+  outline: 1px solid var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ring) 50%, transparent);
+}
+
+:where(.trigger):disabled,
+:where(.trigger)[aria-disabled="true"] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+:where(.panel) {
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  outline: none;
+}

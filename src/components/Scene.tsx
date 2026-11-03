@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { Canvas, useFrame, useThree, type ThreeElements } from '@react-three/fiber'
 import { Float, Stars } from '@react-three/drei'
 import * as THREE from 'three'
+import styles from './Scene.module.css'
 
 const COLORS = ['#e4002b', '#00a651', '#2e5bd8', '#ffc20e']
 
@@ -161,7 +162,7 @@ const checker = makeCheckerTexture()
 
 export function Scene() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden>
+    <div className={styles.backdrop} aria-hidden>
       <Canvas
         className="pixelated"
         dpr={0.4}

@@ -1,0 +1,20 @@
+.red {
+  background-color: var(--n64-red);
+  color: #fff;
+}
+.green {
+  background-color: var(--n64-green);
+  color: #fff;
+}
+.blue {
+  background-color: var(--n64-blue);
+  color: #fff;
+}
+.yellow {
+  background-color: var(--n64-yellow);
+  color: #000;
+}
+.plastic {
+  background-color: var(--n64-plastic);
+  color: #fff;
+}
