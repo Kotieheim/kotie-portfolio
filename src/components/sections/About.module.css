@@ -60,31 +60,62 @@
   color: var(--muted-foreground);
 }
 
+.sections {
+  display: grid;
+  gap: 1.5rem;
+}
+
 .party {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-around;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  display: grid;
+  gap: 2rem;
 }
 
 .member {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
+}
+
+@media (min-width: 40rem) {
+  .member {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  /* Alternate: image-text, text-image, image-text... */
+  .member:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .member:nth-child(even) .blurb {
+    text-align: right;
+  }
 }
 
 .sprite {
-  height: 6rem;
+  flex-shrink: 0;
+  height: 8rem;
   width: auto;
+  max-width: 40%;
+  object-fit: contain;
   image-rendering: pixelated;
+}
+
+.blurb {
+  display: grid;
+  gap: 0.5rem;
+  flex: 1;
 }
 
 .memberName {
   font-family: var(--font-pixel);
-  font-size: 0.6rem;
-  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  color: var(--n64-yellow);
   text-transform: uppercase;
+}
+
+.bio {
+  line-height: 1.625;
+  text-wrap: pretty;
 }
