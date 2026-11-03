@@ -5,7 +5,7 @@
     "email": "kotieheim@gmail.com",
     "phone": "(801) 427-9988",
     "location": "Dayton, OH",
-    "summary": "Senior developer with 6+ years building production web applications, APIs, and cloud-ready systems for enterprise and global restaurant brands. Deep in Vue, React and TypeScript on the front end, with Node.js and Go services, PostgreSQL, and Redis behind them. Leads cross-functional initiatives, owns Docker-based CI/CD, and mentors developers through code reviews and pairing. Partners with client teams on high-visibility systems and releases for global restaurant brands, from pricing integration through production launch. Uses AI-assisted development tools daily and has shipped AI-driven data tooling to production.",
+    "summary": "Senior Software Developer with 6+ years building production web applications, APIs, and cloud-ready systems for enterprise and global restaurant brands. Deep in Vue, React and TypeScript on the front end, with Node.js and Go services, PostgreSQL, and Redis behind them. Leads cross-functional initiatives, owns Docker-based CI/CD, and mentors developers through code reviews and pairing. Partners with client teams on high-visibility systems and releases for global restaurant brands, from pricing integration through production launch. Uses AI-assisted development tools daily and has shipped AI-driven data tooling to production.",
     "profiles": [
       {
         "network": "LinkedIn",
@@ -29,7 +29,7 @@
         "Vue",
         "Svelte",
         "HTML/CSS",
-        "Responsive design"
+        "Responsive Design"
       ]
     },
     {

@@ -70,7 +70,7 @@ export default function App() {
             download
             className={cn(styles.cta, accentClass.yellow)}
           >
-            Resume download
+            Resume Download
           </a>
         </div>
       </header>
