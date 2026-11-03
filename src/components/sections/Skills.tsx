@@ -1,18 +1,19 @@
 import { Panel } from '@/components/Panel'
 import { Badge } from '@/components/ui/badge'
 import { resume } from '@/data/resume'
+import styles from './Skills.module.css'
 
 const ACCENTS = ['blue', 'green', 'red', 'yellow'] as const
 
 export function Skills() {
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div className={styles.grid}>
       {resume.skills.map((group, i) => (
         <Panel key={group.name} title={group.name} accent={ACCENTS[i % ACCENTS.length]}>
-          <ul className="flex flex-wrap gap-2">
+          <ul className={styles.keywords}>
             {group.keywords.map((keyword) => (
               <li key={keyword}>
-                <Badge variant="secondary" className="h-auto rounded-sm border-2 border-black px-2 py-1 text-sm">
+                <Badge variant="secondary" className={styles.keyword}>
                   {keyword}
                 </Badge>
               </li>

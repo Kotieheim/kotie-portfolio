@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState, type ComponentType } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { About } from '@/components/sections/About'
 import { Contact } from '@/components/sections/Contact'
@@ -7,15 +7,17 @@ import { Projects } from '@/components/sections/Projects'
 import { Skills } from '@/components/sections/Skills'
 import { resume } from '@/data/resume'
 import { cn } from '@/lib/utils'
+import { accentClass, type Accent } from '@/styles/accents'
+import styles from './App.module.css'
 
 const Scene = lazy(() => import('@/components/Scene').then((m) => ({ default: m.Scene })))
 
-const TABS = [
-  { value: 'about', label: 'About', glyph: 'A', color: 'bg-n64-blue text-white', Section: About },
-  { value: 'experience', label: 'Experience', glyph: 'B', color: 'bg-n64-green text-white', Section: Experience },
-  { value: 'skills', label: 'Skills', glyph: 'C', color: 'bg-n64-yellow text-black', Section: Skills },
-  { value: 'projects', label: 'Projects', glyph: 'Z', color: 'bg-n64-plastic text-white', Section: Projects },
-  { value: 'contact', label: 'Contact', glyph: 'S', color: 'bg-n64-red text-white', Section: Contact },
+const TABS: { value: string; label: string; glyph: string; accent: Accent; Section: ComponentType }[] = [
+  { value: 'about', label: 'About', glyph: 'A', accent: 'blue', Section: About },
+  { value: 'experience', label: 'Experience', glyph: 'B', accent: 'green', Section: Experience },
+  { value: 'skills', label: 'Skills', glyph: 'C', accent: 'yellow', Section: Skills },
+  { value: 'projects', label: 'Projects', glyph: 'Z', accent: 'plastic', Section: Projects },
+  { value: 'contact', label: 'Contact', glyph: 'S', accent: 'red', Section: Contact },
 ]
 
 const YEAR = new Date().getFullYear()
@@ -45,66 +47,63 @@ export default function App() {
         <Scene />
       </Suspense>
 
-      <header className="flex min-h-[80svh] flex-col items-start justify-center gap-6 px-4 py-16 sm:px-10">
-        <p className="font-pixel text-xs text-muted-foreground">© {YEAR} Portfolio Ent.</p>
-        <h1 className="retro-title text-[clamp(2.5rem,10vw,6.5rem)] leading-[0.95] uppercase">
+      <header className={styles.hero}>
+        <p className={styles.copyright}>© {YEAR} Portfolio Ent.</p>
+        <h1 className={cn('retro-title', styles.title)}>
           {name.split(' ').map((part) => (
-            <span key={part} className="block">
+            <span key={part}>
               {part}
             </span>
           ))}
         </h1>
-        <p className="font-pixel text-sm text-white sm:text-base">{label}</p>
-        <div className="flex flex-wrap items-center gap-4 pt-4">
+        <p className={styles.label}>{label}</p>
+        <div className={styles.actions}>
           <button
             type="button"
             onClick={pressStart}
-            className="font-pixel rounded-full border-4 border-black bg-n64-red px-6 py-3 text-sm text-white shadow-[4px_4px_0_#000] transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_#000]"
+            className={cn(styles.cta, accentClass.red)}
           >
             <span aria-hidden className="blink">▶</span> Press Start
           </button>
           <a
             href="/Dakota_Heim_Resume.docx"
             download
-            className="font-pixel rounded-full border-4 border-black bg-n64-yellow px-6 py-3 text-sm text-black shadow-[4px_4px_0_#000] transition-transform hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-[2px_2px_0_#000]"
+            className={cn(styles.cta, accentClass.yellow)}
           >
             Resume download
           </a>
         </div>
       </header>
 
-      <main ref={menuRef} className="mx-auto max-w-6xl scroll-mt-4 px-4 pb-24 sm:px-10">
-        <Tabs value={tab} onValueChange={(value) => setTab(value as string)} className="gap-8">
-          <TabsList className="retro-panel h-auto! w-full flex-wrap justify-center gap-2 p-3 sm:justify-between">
+      <main ref={menuRef} className={styles.main}>
+        <Tabs value={tab} onValueChange={(value) => setTab(value as string)} className={styles.tabs}>
+          <TabsList className={cn('retro-panel', styles.tabList)}>
             {TABS.map((t, i) => (
               <TabsTrigger
                 key={t.value}
                 value={t.value}
-                className="h-auto flex-none gap-2 rounded-full border-2 border-transparent px-3 py-2 text-foreground/70 data-active:border-n64-yellow data-active:bg-secondary data-active:text-n64-yellow"
+                className={styles.tab}
               >
                 <span
                   aria-hidden
-                  className={cn(
-                    'font-pixel grid size-7 place-items-center rounded-full border-2 border-black text-[0.6rem] shadow-[2px_2px_0_#000]',
-                    t.color,
-                  )}
+                  className={cn(styles.glyph, accentClass[t.accent])}
                 >
                   {t.glyph}
                 </span>
-                <span className="font-pixel text-[0.65rem] uppercase">{t.label}</span>
+                <span className={styles.tabLabel}>{t.label}</span>
                 <span className="sr-only">(press {i + 1})</span>
               </TabsTrigger>
             ))}
           </TabsList>
 
           {TABS.map(({ value, Section }) => (
-            <TabsContent key={value} value={value} className="animate-in fade-in-0 zoom-in-95 duration-300">
+            <TabsContent key={value} value={value} className={styles.screen}>
               <Section />
             </TabsContent>
           ))}
         </Tabs>
 
-        <p className="font-pixel mt-16 text-center text-[0.55rem] leading-loose text-muted-foreground">
+        <p className={styles.tip}>
           Tip: press 1–5 to switch screens
         </p>
       </main>
