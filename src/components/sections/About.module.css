@@ -59,3 +59,32 @@
   line-height: 1.25rem;
   color: var(--muted-foreground);
 }
+
+.party {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sprite {
+  height: 6rem;
+  width: auto;
+  image-rendering: pixelated;
+}
+
+.memberName {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+}
