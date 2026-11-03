@@ -1,0 +1,15 @@
+.panel {
+  overflow: hidden;
+}
+
+.title {
+  padding: 0.5rem 1rem;
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.body {
+  padding: 1.25rem;
+}

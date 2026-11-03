@@ -1,0 +1,27 @@
+:where(.badge) {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: fit-content;
+  height: 1.25rem;
+  overflow: hidden;
+  padding: 0.125rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius) * 2.6);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+:where(.secondary) {
+  background-color: var(--secondary);
+  color: var(--foreground);
+}
+
+:where(.outline) {
+  border-color: var(--border);
+  color: var(--foreground);
+}

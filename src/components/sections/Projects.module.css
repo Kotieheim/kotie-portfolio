@@ -1,0 +1,43 @@
+.layout,
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.name {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  line-height: 1.25;
+  color: var(--n64-yellow);
+}
+
+.description {
+  margin-bottom: 1rem;
+  line-height: 1.625;
+}
+
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.more {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  line-height: 2;
+  text-align: center;
+}
+
+.moreLink {
+  color: var(--n64-yellow);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}

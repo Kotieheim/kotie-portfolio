@@ -1,6 +1,7 @@
 import { Panel } from '@/components/Panel'
 import { Badge } from '@/components/ui/badge'
 import { resume } from '@/data/resume'
+import styles from './Projects.module.css'
 
 const ACCENTS = ['red', 'green', 'blue', 'yellow'] as const
 
@@ -8,13 +9,13 @@ export function Projects() {
   const github = resume.basics.profiles.find((profile) => profile.network === 'GitHub')
 
   return (
-    <div className="grid gap-6">
-      <div className="grid gap-6 md:grid-cols-2">
+    <div className={styles.layout}>
+      <div className={styles.grid}>
         {resume.projects.map((project, i) => (
           <Panel key={project.name} title={`Stage ${i + 1}`} accent={ACCENTS[i % ACCENTS.length]}>
-            <h3 className="font-heading mb-2 text-lg leading-tight text-n64-yellow">{project.name}</h3>
-            <p className="mb-4 leading-relaxed">{project.description}</p>
-            <ul className="flex flex-wrap gap-2">
+            <h3 className={styles.name}>{project.name}</h3>
+            <p className={styles.description}>{project.description}</p>
+            <ul className={styles.keywords}>
               {project.keywords.map((keyword) => (
                 <li key={keyword}>
                   <Badge variant="outline">{keyword}</Badge>
@@ -26,9 +27,9 @@ export function Projects() {
       </div>
 
       {github && (
-        <p className="font-pixel text-center text-[0.65rem] leading-loose">
+        <p className={styles.more}>
           More side quests on{' '}
-          <a href={github.url} target="_blank" rel="noreferrer" className="text-n64-yellow underline underline-offset-4">
+          <a href={github.url} target="_blank" rel="noreferrer" className={styles.moreLink}>
             GitHub
           </a>
         </p>
