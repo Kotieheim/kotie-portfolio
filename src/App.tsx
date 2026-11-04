@@ -65,8 +65,9 @@ export default function App() {
           >
             <span aria-hidden className="blink">▶</span> Press Start
           </button>
+          {/* Add option to download whichever file type */}
           <a
-            href="/Dakota_Heim_Resume.docx"
+            href="/Dakota_Heim_Resume.pdf"
             download
             className={cn(styles.cta, accentClass.yellow)}
           >
