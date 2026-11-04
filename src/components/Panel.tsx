@@ -6,7 +6,7 @@ import styles from './Panel.module.css'
 interface PanelProps {
   title: string
   /** Color of the header bar, one of the controller-button colors. */
-  accent?: 'red' | 'green' | 'blue' | 'yellow'
+  accent?: 'red' | 'green' | 'blue' | 'yellow' | 'purple' | 'orange' | 'teal'
   className?: string
   children: ReactNode
 }

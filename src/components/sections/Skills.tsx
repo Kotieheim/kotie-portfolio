@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import { resume } from '@/data/resume'
 import styles from './Skills.module.css'
 
-const ACCENTS = ['blue', 'green', 'red', 'yellow'] as const
+const ACCENTS = ['blue', 'green', 'red', 'yellow', 'purple', 'orange', 'teal'] as const
 
 export function Skills() {
   return (

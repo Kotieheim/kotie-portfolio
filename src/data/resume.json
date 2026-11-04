@@ -79,6 +79,15 @@
         "Technical documentation",
         "Mentorship"
       ]
+    },
+    {
+      "name": "Loading... (Learning)",
+      "keywords": [
+        "AWS Cloud Practitioner Certification",
+        "Cloud Infrastructure",
+        "Python",
+        "Machine Learning"
+      ]
     }
   ],
   "work": [
@@ -157,46 +166,27 @@
     {
       "name": "Rules-Engine Platform",
       "description": "Next-generation platform built on a rules-engine-driven JSON state model that powers dynamic web applications for all client brands.",
-      "keywords": [
-        "TypeScript",
-        "JSON state models",
-        "Rules engine"
-      ]
+      "keywords": ["TypeScript", "JSON state models", "Rules engine"]
     },
     {
       "name": "Pricing API Cache",
       "description": "Redis caching layer for a high-traffic Go pricing API serving ~15,000 devices every 15 minutes.",
-      "keywords": [
-        "Go",
-        "Redis",
-        "REST APIs"
-      ]
+      "keywords": ["Go", "Redis", "REST APIs"]
     },
     {
       "name": "Image-to-Dataset AI Tooling",
       "description": "AI-driven tooling that converts image data into structured datasets feeding internal systems.",
-      "keywords": [
-        "AI pipelines",
-        "Data modeling"
-      ]
+      "keywords": ["AI pipelines", "Data modeling"]
     },
     {
       "name": "API & WebSocket QA Simulator",
       "description": "Internal QA tooling that simulates API and WebSocket traffic for reliable, repeatable test environments.",
-      "keywords": [
-        "Node.js",
-        "WebSockets",
-        "Testing"
-      ]
+      "keywords": ["Node.js", "WebSockets", "Testing"]
     },
     {
       "name": "Docker CI/CD Pipelines",
       "description": "Custom Docker CI/CD workflows with feature-flag rollouts that automated complex builds and deployments.",
-      "keywords": [
-        "Docker",
-        "CI/CD",
-        "Feature flags"
-      ]
+      "keywords": ["Docker", "CI/CD", "Feature flags"]
     }
   ]
 }
