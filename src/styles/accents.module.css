@@ -14,6 +14,18 @@
   background-color: var(--n64-yellow);
   color: #000;
 }
+.purple {
+  background-color: var(--n64-purple);
+  color: #fff;
+}
+.orange {
+  background-color: var(--n64-orange);
+  color: #fff;
+}
+.teal {
+  background-color: var(--n64-teal);
+  color: #fff;
+}
 .plastic {
   background-color: var(--n64-plastic);
   color: #fff;
