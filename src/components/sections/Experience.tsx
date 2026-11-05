@@ -1,8 +1,8 @@
 import { Panel } from '@/components/Panel'
+import { randomColor } from '@/styles/accents'
 import { formatMonth, resume } from '@/data/resume'
 import styles from './Experience.module.css'
 
-const ACCENTS = ['red', 'green', 'blue', 'yellow'] as const
 
 export function Experience() {
   return (
@@ -14,7 +14,7 @@ export function Experience() {
           <Panel
             key={`${job.company}-${last.startDate}`}
             title={`World ${resume.work.length - i} · ${job.company}`}
-            accent={ACCENTS[i % ACCENTS.length]}
+            accent={randomColor('experience', i)}
           >
             <p className={styles.dates}>
               {formatMonth(last.startDate)} – {formatMonth(first.endDate)}

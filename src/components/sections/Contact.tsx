@@ -1,6 +1,7 @@
 import { Panel } from '@/components/Panel'
 import { resume } from '@/data/resume'
 import styles from './Contact.module.css'
+import { randomColor } from '@/styles/accents'
 
 export function Contact() {
   const { email, location, profiles } = resume.basics
@@ -14,7 +15,7 @@ export function Contact() {
   ]
 
   return (
-    <Panel title="Continue?" accent="red" className={styles.panel}>
+    <Panel title="Continue?" accent={randomColor('contact')} className={styles.panel}>
       <p className={styles.intro}>
         Based in {location} and open to talking about senior frontend and full-stack roles. The quickest way to
         reach me is email.

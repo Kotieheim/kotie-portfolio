@@ -8,6 +8,7 @@ import koAndJules from "@/assets/party/koandjules.png";
 import kota from "@/assets/party/kota.png";
 import moon from "@/assets/party/moon.png";
 import nyx from "@/assets/party/nyx.png";
+import { randomColor } from "@/styles/accents";
 
 const party = [
   {
@@ -67,12 +68,12 @@ export function About() {
   return (
     <div className={styles.sections}>
       <div className={styles.layout}>
-        <Panel title="About my work!" accent="blue">
+        <Panel title="About my work!" accent={randomColor("about", 3)}>
           <p className={styles.summary}>{basics.summary}</p>
         </Panel>
 
         <div className={styles.column}>
-          <Panel title="Stats" accent="yellow">
+          <Panel title="Stats" accent={randomColor("about", 2)}>
             <dl className={styles.stats}>
               {stats.map((stat) => (
                 <div key={stat.label} className={styles.stat}>
@@ -83,7 +84,7 @@ export function About() {
             </dl>
           </Panel>
 
-          <Panel title="Training" accent="green">
+          <Panel title="Training" accent={randomColor("about", 1)}>
             <ul className={styles.training}>
               {education.map((item) => (
                 <li key={item.institution}>
@@ -98,7 +99,7 @@ export function About() {
         </div>
       </div>
 
-      <Panel title="About me!" accent="red">
+      <Panel title="About me!" accent={randomColor("about", 0)}>
         <ul className={styles.party} aria-label="Party members">
           {party.map((member) => {
             const isSelected = member.id === selectedId;

@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
-import { accentClass } from '@/styles/accents'
+import { accentClass, type PanelAccent } from '@/styles/accents'
 import styles from './Panel.module.css'
 
 interface PanelProps {
   title: string
   /** Color of the header bar, one of the controller-button colors. */
-  accent?: 'red' | 'green' | 'blue' | 'yellow' | 'purple' | 'orange' | 'teal'
+  accent?: PanelAccent
   className?: string
   children: ReactNode
 }
