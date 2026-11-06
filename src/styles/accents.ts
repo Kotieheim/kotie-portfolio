@@ -20,6 +20,7 @@ const palettes = new Map<string, PanelAccent[]>()
 
 export function randomColor(page: string, index = 0): PanelAccent {
   let palette = palettes.get(page)
+
   if (!palette) {
     palette = shuffle(PANEL_ACCENTS)
     palettes.set(page, palette)
